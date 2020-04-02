@@ -1,0 +1,47 @@
+﻿@model Assignment_6._1.Models.AssignmentPerson
+
+@{ 
+    ViewData["Title"] = "Assignment 7.1";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" asp-controller="Assignments" method="post">
+    <div class="form-group row" >
+        <label asp-for="FirstName" class="col-form-label"></label><br />
+        <input style="margin-left: 15px;" asp-for="FirstName" 
+               data-val-length-max="25"
+               data-val-required="First name is required."
+               class="col-sm-2"/>
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="LastName" class="col-form-label"></label><br />
+        <input style="margin-left: 15px;" asp-for="LastName" 
+               data-val-length-max="25"
+               data-val-length-min="2"
+               data-val-required="Last name is required."
+               class="col-sm-2"/>
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Age" class="col-form-label"></label><br />
+        <input style="margin-left: 15px;" asp-for="Age" 
+               data-val-required="Age is required."
+               class="col-sm-2"/>
+        <span asp-validation-for="Age"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Date" class="col-form-label"></label><br />
+        <input style="margin-left: 15px;" asp-for="Date" class="col-sm-2"/>
+        <span asp-validation-for="Date"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Country" class="col-form-label"></label><br />
+        <select style="margin-left: 15px;" asp-for="Country" asp-items="Html.GetEnumSelectList<Countries>()" class="col-sm-2">
+        </select>
+    </div>
+    <div class="form-group row" >
+        <button type="submit">Create</button>
+    </div>
+</form>

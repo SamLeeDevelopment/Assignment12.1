@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Assignment_6._1.Models.Student>
+
+@{
+    ViewData["Title"] = "Assignment 6.1";
+
+    var access = @ViewBag.AccessLevel;
+}
+<h1>Assignment 6.1</h1>
+<p>
+    Access Level: @access
+    @if (access >= 8)
+    {
+        <div>Hello Admin</div>
+    }
+</p>
+@if (access < 2)
+{
+    <p>You do not have sufficient access to view this page.</p>
+}
+else if(access >= 2)
+{
+    <table width=500>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.FirstName)</b></td>
+            <td><b>@Html.DisplayNameFor(model => model.LastName)</b></td>
+            @if (access >= 8)
+            {
+                <td><b>@Html.DisplayNameFor(model => model.Grade)</b></td>
+            }
+        </tr>
+        @foreach (var student in Model)
+        {
+            Html.RenderPartial("_Student", student);
+        }
+    </table>
+}

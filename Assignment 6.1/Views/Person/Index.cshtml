@@ -1,0 +1,28 @@
+﻿@model ICollection<PersonSummaryViewModel>
+@{
+    ViewData["Title"] = "People";
+}
+
+<h1>Assignment 10.1</h1>
+<div class="table-responsive">
+    <table class="table table-striped person">
+        <thead>
+            <tr>
+                <th>Person</th>
+                <th>Location</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.Name</td>
+                    <td>@person.Location</td>
+                    <td><a asp-action="View" asp-route-id="@person.Id" class="btn">View</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a asp-action="Create" class="btn btn-success">Create new Person</a>

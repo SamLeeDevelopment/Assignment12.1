@@ -1,0 +1,12 @@
+﻿@model Assignment_6._1.Models.Student
+
+    <tr>
+        <td>@Html.DisplayTextFor(model => model.FirstName)</td>
+        <td>@Html.DisplayTextFor(model => model.LastName)</td>
+        @if (ViewBag.AccessLevel >= 8)
+        {
+            <td>@Html.DisplayTextFor(model => model.Grade)</td>
+        }
+    </tr>   
+
+

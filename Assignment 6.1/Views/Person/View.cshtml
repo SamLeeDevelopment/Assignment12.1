@@ -1,0 +1,23 @@
+﻿@model PersonDetailViewModel
+@{
+    ViewData["Title"] = Model.FirstName + Model.LastName;
+}
+
+<h2>@Model.FirstName @Model.LastName</h2>
+<form asp-action="DeletePost" asp-route-id="@Model.Id">
+    <p>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <button class="btn btn-danger">Delete</button>
+    </p>
+</form>
+<p>This person is from @Model.City, @Model.State&period; They  were born on @Model.DateOfBirth&period;</p>
+
+<dl>
+    @foreach (var item in Model.Accomplishments)
+    {
+        <dt>@item.Name</dt>
+        <dd>@item.DateOfAccomplishment</dd>
+    }
+</dl>
+
+<a class="btn btn-dark" asp-controller="Person" asp-action="Index">Back</a>
