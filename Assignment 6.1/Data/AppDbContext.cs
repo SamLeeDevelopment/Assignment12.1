@@ -14,5 +14,8 @@ namespace Assignment_6._1.Data
         }
 
         public DbSet<Person> People { get; set; }
+
+        //Assignment 11.1
+        public DbSet<Error> ErrorLog { get; set; }
     }
 }

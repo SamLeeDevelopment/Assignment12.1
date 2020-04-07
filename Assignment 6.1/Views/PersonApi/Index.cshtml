@@ -1,0 +1,28 @@
+﻿@model ICollection<ErrorSummaryViewModel>
+@{
+    ViewData["Title"] = "Errors";
+}
+
+<h1>Assignment 11.1</h1>
+<p>If there were server-side errors when processing a person in the database, they would show up here. For this assignment this API was created with integration of ASP.NET filters to check for bad requests. Moreover, an ErrorLog database was created to store each error triggered by the API.</p>
+<div class="table-responsive">
+    <table class="table table-striped error">
+        <thead>
+            <tr>
+                <th>HTTP Status Code</th>
+                <th>Error Exception Message</th>
+                <th>Time of Error</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var error in Model)
+            {
+            <tr>
+                <td>@error.HttpStatusCode</td>
+                <td>@error.ExceptionMessage</td>
+                <td>@error.TimeOfError</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

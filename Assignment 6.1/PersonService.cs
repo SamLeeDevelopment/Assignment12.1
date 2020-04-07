@@ -31,6 +31,21 @@ namespace Assignment_6._1
                 .ToList();
         }
 
+        //Assignment 11.1
+        public ICollection<ErrorSummaryViewModel> GetErrors()
+        {
+            return _context.ErrorLog
+                .Select(x => new ErrorSummaryViewModel
+                {
+                    Id = x.ErrorId,
+                    HttpStatusCode = x.HttpStatusCode,
+                    ExceptionMessage = x.ExceptionMessage,
+                    TimeOfError = x.TimeOfError,
+                })
+                .ToList();
+        }
+        //--
+
         public PersonDetailViewModel GetPersonDetail(int id)
         {
             return _context.People
@@ -84,6 +99,16 @@ namespace Assignment_6._1
             return person.PersonId;
         }
 
+        //Assignment 11.1
+        public int CreateError(CreateErrorCommand cmd)
+        {
+            var error = cmd.ToError();
+            _context.Add(error);
+            _context.SaveChanges();
+            return error.ErrorId;
+        }
+        //--
+
         /// <summary>
         /// Updates an existing person
         /// </summary>
@@ -111,6 +136,15 @@ namespace Assignment_6._1
 
             person.IsDeleted = true;
             _context.SaveChanges();
+        }
+
+        //for Assignment 11.1
+        public bool DoesPersonExist(int id)
+        {
+            return _context.People
+                .Where(r => !r.IsDeleted)
+                .Where(r => r.PersonId == id)
+                .Any();
         }
     }
 }
